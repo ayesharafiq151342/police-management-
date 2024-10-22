@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Available Officers</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style> .center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    background-color: #f8f9fa;
+    padding: 20px;
+  }
+
+  .form-container {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+  }
+
+  .logo-name-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .logo img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .logo-name-container h2 {
+    margin-left: 10px;
+  }
+
+  .back-btn {
+    text-align: right;
+    margin-bottom: 20px;
+  }
+    .filter-container {
+      margin-bottom: 20px;
+      background-color: #f8f9fa;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    table {
+      width: 100%;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+    <div class="container center-content">
+        <!-- Add Officer Form -->
+        <div class="form-container">
+    
+          <!-- Logo and Name Section -->
+          <div class="logo-name-container">
+            <div class="logo">
+              <img src="./images/9b0590d1-114c-43c9-b740-a57afbbe652a-removebg-preview.png" alt="Logo">
+            </div>
+            <h2>Police Line Force Management</h2><div class="back-btn">
+                <a href="index.html" class="btn btn-secondary" id="backBtn">Back</a>
+              </div>
+          </div>
+    <!-- Filter Section -->
+    <div class="filter-container">
+      <div class="row mb-3">
+        <div class="col-md-3">
+          <label for="filterStation" class="form-label">Filter by Rapat No (Station):</label>
+          <select id="filterStation" class="form-select">
+            <option value="">Select Station</option>
+            <option value="Sargodha Road">Sargodha Road</option>
+            <option value="Madina Town">Madina Town</option>
+            <option value="Civil Line">Civil Line</option>
+          </select>
+        </div>
+
+        <div class="col-md-3">
+          <label for="filterCategory" class="form-label">Filter by Category:</label>
+          <select id="filterCategory" class="form-select">
+            <option value="">Select Category</option>
+            <option value="Inspector">Inspector</option>
+            <option value="Crime">Crime</option>
+            <option value="1st Reserve">1st Reserve</option>
+            <option value="2nd Reserve">2nd Reserve</option>
+          </select>
+        </div>
+
+        <div class="col-md-3">
+          <label for="filterDesignation" class="form-label">Filter by Designation:</label>
+          <input type="text" id="filterDesignation" class="form-control" placeholder="Designation">
+        </div>
+
+        <div class="col-md-3">
+          <label for="filterDate" class="form-label">Filter by Date:</label>
+          <input type="date" id="filterDate" class="form-control">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-3">
+          <label for="filterStatus" class="form-label">Filter by Status:</label>
+          <select id="filterStatus" class="form-select">
+            <option value="">Select Status</option>
+            <option value="transferred">Transferred</option>
+            <option value="available">Available</option>
+          </select>
+        </div>
+
+        <div class="col-md-3">
+          <button class="btn btn-primary mt-4" onclick="applyFilters()">Filter</button>
+          <button class="btn btn-secondary mt-4" onclick="clearFilters()">Clear Filters</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Officers Table -->
+    <table class="table table-bordered">
+      <thead class="table-light">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Badge Number</th>
+          <th>Category</th>
+          <th>Designation</th>
+          <th>Duty</th>
+          <th>Rapat No (Station)</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="officerTable">
+        <tr>
+          <td>1</td>
+          <td>Faizan</td>
+          <td>1234</td>
+          <td>Inspector</td>
+          <td>Security</td>
+          <td>Sargodha Road</td>
+          <td>Sargodha Road</td>
+          <td>2024-10-19</td>
+          <td>transferred</td>
+          <td><a href="#">Edit</a></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Rasheed</td>
+          <td>12345</td>
+          <td>Crime</td>
+          <td>Constable</td>
+          <td>Madina Town</td>
+          <td>Sargodha Road</td>
+          <td>2024-10-19</td>
+          <td>transferred</td>
+          <td><a href="#">Edit</a></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Faizan</td>
+          <td>TSI/1234</td>
+          <td>Crime</td>
+          <td>Reinstate</td>
+          <td>Civil Line</td>
+          <td>Civil Line</td>
+          <td></td>
+          <td>available</td>
+          <td><a href="#">Edit</a></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Faizan</td>
+          <td>2211</td>
+          <td>Inspector</td>
+          <td>Constable</td>
+          <td>Security</td>
+          <td>Sargodha Road</td>
+          <td></td>
+          <td>transferred</td>
+          <td><a href="#">Edit</a></td>
+        </tr>
+        <!-- More rows can be added -->
+      </tbody>
+    </table>
+
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- JavaScript for filtering -->
+  <script>
+    function applyFilters() {
+      const stationFilter = document.getElementById('filterStation').value.toLowerCase();
+      const categoryFilter = document.getElementById('filterCategory').value.toLowerCase();
+      const designationFilter = document.getElementById('filterDesignation').value.toLowerCase();
+      const dateFilter = document.getElementById('filterDate').value;
+      const statusFilter = document.getElementById('filterStatus').value.toLowerCase();
+
+      const table = document.getElementById('officerTable');
+      const rows = table.getElementsByTagName('tr');
+
+      for (let i = 0; i < rows.length; i++) {
+        const cells = rows[i].getElementsByTagName('td');
+        const station = cells[6].textContent.toLowerCase();
+        const category = cells[3].textContent.toLowerCase();
+        const designation = cells[4].textContent.toLowerCase();
+        const date = cells[7].textContent;
+        const status = cells[8].textContent.toLowerCase();
+
+        let shouldShow = true;
+
+        if (stationFilter && !station.includes(stationFilter)) {
+          shouldShow = false;
+        }
+        if (categoryFilter && !category.includes(categoryFilter)) {
+          shouldShow = false;
+        }
+        if (designationFilter && !designation.includes(designationFilter)) {
+          shouldShow = false;
+        }
+        if (dateFilter && date !== dateFilter) {
+          shouldShow = false;
+        }
+        if (statusFilter && !status.includes(statusFilter)) {
+          shouldShow = false;
+        }
+
+        rows[i].style.display = shouldShow ? '' : 'none';
+      }
+    }
+
+    function clearFilters() {
+      document.getElementById('filterStation').value = '';
+      document.getElementById('filterCategory').value = '';
+      document.getElementById('filterDesignation').value = '';
+      document.getElementById('filterDate').value = '';
+      document.getElementById('filterStatus').value = '';
+      applyFilters();
+    }
+  </script>
+
+</body>
+</html>
